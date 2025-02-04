@@ -1,0 +1,54 @@
+.transactions-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.transaction-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.transaction-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.transaction-content {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.transaction-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.transaction-icon i {
+  font-size: 1.25rem;
+}
+
+.amount {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.no-transactions {
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  color: #6c757d;
+}
+
+.no-transactions i {
+  opacity: 0.7;
+}

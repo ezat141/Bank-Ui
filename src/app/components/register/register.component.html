@@ -1,0 +1,92 @@
+<section style="background-color: #eee;">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-12 col-xl-8">
+        <div class="card text-black" style="border-radius: 25px;">
+          <div class="card-body p-md-3">
+            <div class="row justify-content-center">
+              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                <p class="text-center h1 fw-bold mb-5 mt-4">Sign up</p>
+                <form class="mx-1 mx-md-4" [formGroup]="signupForm" (ngSubmit)="submitForm()">
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="text" id="form3Example1c" class="form-control" formControlName="firstName" />
+                      <label class="form-label" for="form3Example1c">Your First Name</label>
+                      <div *ngIf="signupForm.controls['firstName'].errors?.['required'] && (signupForm.controls['firstName'].dirty || signupForm.controls['firstName'].touched)" class="text-danger">
+                        <div *ngIf="signupForm.controls['firstName'].hasError('required')">First Name is required.</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="text" id="form3Example2c" class="form-control" formControlName="lastName" />
+                      <label class="form-label" for="form3Example2c">Your Last Name</label>
+                      <div *ngIf="signupForm.controls['lastName'].errors?.['required'] && (signupForm.controls['lastName'].dirty || signupForm.controls['lastName'].touched)" class="text-danger">
+                        <div *ngIf="signupForm.controls['lastName'].hasError('required')">Last Name is required.</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="email" id="form3Example3c" class="form-control" formControlName="email" email/>
+                      <label class="form-label" for="form3Example3c">Your Email</label>
+                      <div *ngIf="signupForm.controls['email'].errors?.['email'] && (signupForm.controls['email'].dirty || signupForm.controls['email'].touched)" class="text-danger">
+                        Invalid email format.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="password" id="form3Example4c" class="form-control" formControlName="password" minlength="8" />
+                      <label class="form-label" for="form3Example4c">Password</label>
+                      <div *ngIf="signupForm.controls['password'].errors?.['minlength'] && (signupForm.controls['password'].dirty || signupForm.controls['password'].touched)" class="text-danger">
+                        Password must be at least 8 characters long.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="tel" id="form3Example5c" class="form-control" formControlName="phoneNumber" minlength="11" />
+                      <label class="form-label" for="form3Example5c">Your phoneNumber</label>
+                      <div *ngIf="signupForm.controls['phoneNumber'].errors?.['required'] && (signupForm.controls['phoneNumber'].dirty || signupForm.controls['phoneNumber'].touched)" class="text-danger">
+                        <div *ngIf="signupForm.controls['phoneNumber'].hasError('required')">phoneNumber is required.</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="text" id="form3Example6c" class="form-control" formControlName="address" />
+                      <label class="form-label" for="form3Example6c">Your Address</label>
+                      <div *ngIf="signupForm.controls['address'].errors?.['required'] && (signupForm.controls['address'].dirty || signupForm.controls['address'].touched)" class="text-danger">
+                        <div *ngIf="signupForm.controls['address'].hasError('required')">Address is required.</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                    <button type="submit" class="btn btn-primary btn-lg" [disabled]="signupForm.invalid">Register</button>
+                  </div>
+                </form>
+              </div>
+              <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                <img src="assets/samehBankLogo.png" class="img-fluid" alt="Sample image">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

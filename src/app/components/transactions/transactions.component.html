@@ -1,0 +1,57 @@
+<!-- <div class="container" style="padding-bottom: 60px;">
+  <h1 class="mt-5 mb-4">Transactions</h1>
+  <div *ngIf="transactions && transactions.length > 0">
+    <div class="list-group">
+      <div *ngFor="let transaction of transactions" class="list-group-item">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{ transaction.transactionType }}</h5>
+          <small>{{ transaction.createdAt | date: 'medium' }}</small>
+        </div>
+        <p class="mb-1">Amount: {{ transaction.amount | currency }}</p>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!transactions || transactions.length === 0">
+    <p>No transactions available.</p>
+  </div>
+</div> -->
+
+<div class="container" style="padding-bottom: 60px;">
+  <h1 class="mt-5 mb-4 animate__animated animate__fadeIn">Transactions</h1>
+  <div *ngIf="transactions && transactions.length > 0" @listAnimation>
+    <div class="transactions-list">
+      <div
+        *ngFor="let transaction of transactions; trackBy: trackById"
+        class="transaction-card"
+        [class.income]="transaction.transactionType === 'DEPOSIT'"
+        [class.expense]="transaction.transactionType === 'WITHDRAWAL'"
+        @itemAnimation
+      >
+        <div class="d-flex w-100 justify-content-between align-items-center">
+          <div class="transaction-content">
+            <div class="transaction-icon">
+              <i [ngClass]="getTransactionIcon(transaction.transactionType)"></i>
+            </div>
+            <div>
+              <h5 class="mb-1">{{ transaction.transactionType | titlecase }}</h5>
+              <p class="mb-0 text-muted">{{ transaction.description || 'No description' }}</p>
+            </div>
+          </div>
+          <div class="transaction-details">
+            <p class="mb-1 amount" [class.text-success]="transaction.transactionType === 'DEPOSIT'"
+                                [class.text-danger]="transaction.transactionType === 'WITHDRAWAL'">
+              {{ transaction.amount | currency }}
+            </p>
+            <small class="text-muted">{{ transaction.createdAt | date: 'medium' }}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!transactions || transactions.length === 0" @fadeAnimation>
+    <div class="no-transactions">
+      <i class="fas fa-exchange-alt fa-3x mb-3"></i>
+      <p class="lead">No transactions available</p>
+    </div>
+  </div>
+</div>
