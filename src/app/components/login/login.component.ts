@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgIf} from "@angular/common";
 import {AccountLogin} from "../../models/accountLogin/account-login";
-import {saveToken} from "../../environments/environments";
+import {getToken, saveToken} from "../../environments/environments";
 import {AuthService} from "../../services/auth/auth.service";
 import {Router} from "@angular/router";
 
@@ -32,9 +32,19 @@ export class LoginComponent {
       this.authService.authenticate(this.loginForm.value as AccountLogin).subscribe({
         next: response => {
           saveToken(response.token);
+          console.log('Saved token:', getToken());
           this.authService.IsValidToken().subscribe(isValid => {
+            console.log('Is token valid?', isValid);
             if(isValid){
-              this.router.navigate(['home']);
+              const role = this.authService.getUserRole();
+              console.log('User role:', role);
+              if(role === 'ADMIN'){
+                this.router.navigate(['/admin']);
+              }
+              else{
+                this.router.navigate(['home']);
+              }
+
             }else{
 
             console.error('Invalid token received');

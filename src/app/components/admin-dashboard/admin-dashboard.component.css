@@ -1,0 +1,15 @@
+.admin-dashboard {
+  padding: 20px;
+}
+nav {
+  margin-bottom: 20px;
+}
+nav a {
+  margin-right: 15px;
+  text-decoration: none;
+  color: #007bff;
+}
+nav a.active {
+  font-weight: bold;
+  color: #0056b3;
+}

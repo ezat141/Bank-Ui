@@ -6,6 +6,9 @@ import { TransactionsComponent } from './components/transactions/transactions.co
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { AuthGuard } from './guards/authGuard/auth-guard.service';
 import { AuthGuardLogin } from './guards/authGuardLogin/auth-guard-login';
+import { adminGuard } from './guards/adminGuard/admin.guard';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 
 export const routes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -13,5 +16,14 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [AuthGuardLogin] },
   { path: 'transactions', component: TransactionsComponent, canActivate: [AuthGuard] },
+  {
+    path: 'admin',
+    component: AdminDashboardComponent,
+    canActivate: [adminGuard],
+    children: [
+      { path: 'users', component: UserListComponent },
+      { path: '', redirectTo: 'users', pathMatch: 'full' }
+    ]
+  },
   { path: '**', redirectTo: '/login' }
 ];

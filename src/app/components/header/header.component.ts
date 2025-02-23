@@ -22,6 +22,11 @@ export class HeaderComponent {
     return getToken() != null && this.authService.IsValidToken();
   }
 
+  get isAdmin(): boolean {
+    const role = this.authService.getUserRole();
+    return role === 'ADMIN';
+  }
+
   logout() {
     logOut()
     this.router.navigate(['']);
