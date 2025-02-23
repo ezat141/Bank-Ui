@@ -32,13 +32,17 @@ export class LoginComponent {
       this.authService.authenticate(this.loginForm.value as AccountLogin).subscribe({
         next: response => {
           saveToken(response.token);
-          if(this.authService.IsValidToken()){
-            this.router.navigate(['home']);
-          }
-          console.log(response);
+          this.authService.IsValidToken().subscribe(isValid => {
+            if(isValid){
+              this.router.navigate(['home']);
+            }else{
+
+            console.error('Invalid token received');
+            }
+          })
         },
         error: error => {
-          console.error('There was an error!', error);
+          console.error('Login failed', error);
         }
       });
     }
