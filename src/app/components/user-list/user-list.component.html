@@ -10,6 +10,7 @@
         <th>Phone Number</th>
         <th>City</th>
         <th>Status</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -21,6 +22,11 @@
         <td>{{ user.phoneNumber }}</td>
         <td>{{ user.city }}</td>
         <td>{{ user.status ? 'Active' : 'Inactive' }}</td>
+        <td>
+          <button *ngIf="user.status" (click)="deactivateUser(user.id)" class="btn btn-warning btn-sm">Deactivate</button>
+          <button *ngIf="!user.status" (click)="activateUser(user.id)" class="btn btn-success btn-sm">Activate</button>
+      
+        </td>
       </tr>
     </tbody>
   </table>

@@ -37,7 +37,7 @@ export class AuthService {
     if (token) {
       try {
         const decoded: any = jwtDecode(token);
-        return decoded.authorities; // 'authorities' contains 'ADMIN' or 'USER'
+        return decoded.authorities; 
       } catch (error) {
         console.error('Error decoding token', error);
         return null;
