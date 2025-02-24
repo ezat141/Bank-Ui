@@ -9,6 +9,7 @@ import { AuthGuardLogin } from './guards/authGuardLogin/auth-guard-login';
 import { adminGuard } from './guards/adminGuard/admin.guard';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { CreateAccountComponent } from './components/create-account/create-account.component';
 
 export const routes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -16,6 +17,7 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [AuthGuardLogin] },
   { path: 'transactions', component: TransactionsComponent, canActivate: [AuthGuard] },
+  { path: 'create-account', component: CreateAccountComponent, canActivate: [AuthGuard] },
   {
     path: 'admin',
     component: AdminDashboardComponent,
