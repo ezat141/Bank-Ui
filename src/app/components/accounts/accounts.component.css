@@ -1,0 +1,21 @@
+/* accounts.component.css */
+.account-item {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.transaction-form {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+}
+
+input {
+  margin: 5px 0;
+}
+
+button {
+  margin-right: 10px;
+}

@@ -10,6 +10,7 @@ import { adminGuard } from './guards/adminGuard/admin.guard';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { CreateAccountComponent } from './components/create-account/create-account.component';
+import { AccountsComponent } from './components/accounts/accounts.component';
 
 export const routes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent, canActivate: [AuthGuardLogin] },
   { path: 'transactions', component: TransactionsComponent, canActivate: [AuthGuard] },
   { path: 'create-account', component: CreateAccountComponent, canActivate: [AuthGuard] },
+  { path: 'accounts', component: AccountsComponent, canActivate: [AuthGuard] },
   {
     path: 'admin',
     component: AdminDashboardComponent,

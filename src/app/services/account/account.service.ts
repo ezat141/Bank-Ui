@@ -30,8 +30,27 @@ export class AccountService {
   createAccount(): Observable<any> {
       const headers = new HttpHeaders().set('Authorization', `Bearer ${getToken()}`);
       return this.http.post<any>(`${this.baseUrl}/account`, {}, { headers });
-
-
-
   }
+
+  getUserAccounts(): Observable<any[]> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${getToken()}`);
+    return this.http.get<any[]>(`${this.baseUrl}/account`, { headers });
+  }
+
+  deposit(cardNumber: string, amount: number): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${getToken()}`);
+    const body = { cardNumber, amount };
+    return this.http.post<any>(`${this.baseUrl}/transaction/deposit`, body, { headers });
+  }
+
+  withdraw(cardNumber: string, cvv: string, amount: number): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${getToken()}`);
+    const body = { cardNumber, cvv, amount };
+    return this.http.post<any>(`${this.baseUrl}/transaction/withdraw`, body, { headers });
+  }
+
+
+
+
+
 }

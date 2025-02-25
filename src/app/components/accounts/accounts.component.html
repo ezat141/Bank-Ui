@@ -1,0 +1,32 @@
+<h2>Your Accounts</h2>
+<div *ngIf="accounts.length === 0">No accounts found.</div>
+<div *ngFor="let account of accounts" class="account-item">
+  <p><strong>Card Number:</strong> {{ account.cardNumber }} | <strong>Balance:</strong> {{ account.balance }}</p>
+  <button (click)="selectAccountForTransaction(account, 'deposit')">Deposit</button>
+  <button (click)="selectAccountForTransaction(account, 'withdraw')">Withdraw</button>
+</div>
+
+<div *ngIf="selectedAccount && transactionType" class="transaction-form">
+  <h3>{{ transactionType | titlecase }} for Card {{ selectedAccount.cardNumber }}</h3>
+  <form [formGroup]="transactionForm" (ngSubmit)="performTransaction()">
+    <div>
+      <label for="amount">Amount:</label>
+      <input id="amount" type="number" formControlName="amount" placeholder="Enter amount">
+      <span *ngIf="transactionForm.get('amount')?.hasError('required') && transactionForm.get('amount')?.touched">
+        Amount is required.
+      </span>
+      <span *ngIf="transactionForm.get('amount')?.hasError('min') && transactionForm.get('amount')?.touched">
+        Amount must be positive.
+      </span>
+    </div>
+    <div *ngIf="transactionType === 'withdraw'">
+      <label for="cvv">CVV:</label>
+      <input id="cvv" type="text" formControlName="cvv" placeholder="Enter CVV">
+      <span *ngIf="transactionForm.get('cvv')?.hasError('required') && transactionForm.get('cvv')?.touched">
+        CVV is required for withdrawal.
+      </span>
+    </div>
+    <button type="submit" [disabled]="transactionForm.invalid">Submit</button>
+    <button type="button" (click)="resetTransaction()">Cancel</button>
+  </form>
+</div>
